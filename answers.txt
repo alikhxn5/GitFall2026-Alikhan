@@ -1,0 +1,462 @@
+Assignment 2 - Git
+Alikhan Makhamadaliev
+
+================================================================
+PART 1: ANSWERS TO STEPS 5, 6, 22, 30, 33
+================================================================
+
+----------------------------------------------------------------
+STEP 5: INSPECTING THE REPOSITORY
+----------------------------------------------------------------
+
+git status reports the current uncommitted state, which files are
+modified, staged, or untracked, and which branch I am on. git log walks
+backward from HEAD listing every commit with its hash, author, date, and
+message. git shortlog groups the same commits by the author with a count
+for each. Adding --graph draws ASCII branch and merge lines with the log
+so the shape of history is more visible. Adding --oneline on top of that
+compresses each commit to a shorter hash and subject line.
+
+--- git status ---
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+
+--- git log ---
+commit e7fd94bc0664e9558068ae2836794523f93a497f
+Author: Esteban Parra <estebanpr014@gmail.com>
+Date:   Tue Sep 22 09:35:42 2026 -0500
+
+    Create .gitignore
+
+    Added .gitignore file
+
+commit 6aa1abee20eed47f2b9cc1f5aa21c19d72ab80ee
+Author: Esteban Parra <estebanpr014@gmail.com>
+Date:   Tue Sep 22 08:50:34 2026 -0500
+
+    Files added
+
+    Added files missing
+
+commit 5f75e751488fd0b16c81325c9ae814ff65f0c95b
+Merge: fca18d2 b3e573c
+Author: Esteban Parra <estebanpr014@gmail.com>
+Date:   Tue Sep 10 10:10:46 2024 -0500
+
+    Merge branch 'readme'
+    I do not like VI
+    that is what
+
+commit fca18d2606f45601cf99aec4f279339a0dee18d8
+Author: Esteban Parra <estebanpr014@gmail.com>
+Date:   Tue Sep 10 10:08:52 2024 -0500
+
+    BookShop class create
+
+commit b3e573c8b75940e9bbcda519b0bece046f4b60eb
+Author: Esteban Parra <estebanpr014@gmail.com>
+Date:   Tue Sep 10 10:06:47 2024 -0500
+
+    added another name
+
+commit ea123f795a7a0cfc8de45c824e9b7cf17985d355
+Author: Esteban Parra <estebanpr014@gmail.com>
+Date:   Tue Sep 10 10:06:30 2024 -0500
+
+    added another name
+
+commit 4cd474a9c054ca0c47dcf47ac7ab0a44b6c66757
+Author: Esteban Parra <estebanpr014@gmail.com>
+Date:   Tue Sep 10 10:05:55 2024 -0500
+
+    sllepy message
+
+commit 82280194a20dfdfea27311d89fdb20761655217f
+Author: Esteban Parra <estebanpr014@gmail.com>
+Date:   Tue Sep 10 10:03:00 2024 -0500
+
+    Updated readme file
+
+commit 985e63e6d4226c156c56c38d061e57e1672dd90b
+Author: Esteban Parra <estebanpr014@gmail.com>
+Date:   Tue Sep 10 09:59:08 2024 -0500
+
+    Added more names
+
+commit 21ea409f47aa292619b8dea918c0c3eb02f82ccc
+Author: Esteban Parra <estebanpr014@gmail.com>
+Date:   Tue Sep 10 09:56:24 2024 -0500
+
+    Added names LinkedList
+
+commit b02c65d884b0a0f344a482cbb0366139b7bcd969
+Author: Esteban Parra <estebanpr014@gmail.com>
+Date:   Tue Sep 10 09:49:33 2024 -0500
+
+    added empty Main.java
+
+commit bdd2fa9c9cb3d6e17a156106f0da1ac7fd9194ff
+Author: Esteban Parra <estebanpr014@gmail.com>
+Date:   Tue Sep 10 09:25:22 2024 -0500
+
+    starter files
+
+--- git shortlog ---
+Esteban Parra (12):
+      starter files
+      added empty Main.java
+      Added names LinkedList
+      Added more names
+      Updated readme file
+      sllepy message
+      added another name
+      added another name
+      BookShop class create
+      Merge branch 'readme' I do not like VI that is what
+      Files added
+      Create .gitignore
+
+--- git log --graph --oneline ---
+* e7fd94b Create .gitignore
+* 6aa1abe Files added
+*   5f75e75 Merge branch 'readme' I do not like VI that is what
+|\
+| * b3e573c added another name
+| * ea123f7 added another name
+| * 4cd474a sllepy message
+* | fca18d2 BookShop class create
+|/
+* 8228019 Updated readme file
+* 985e63e Added more names
+* 21ea409 Added names LinkedList
+* b02c65d added empty Main.java
+* bdd2fa9 starter files
+
+----------------------------------------------------------------
+STEP 6: GIT REMOTE
+----------------------------------------------------------------
+
+There's one remote, called origin. git remote -v prints it twice because
+git keeps separate fetch and push URLs, but both point at my fork. Cloning
+sets this up automatically and names it origin by convention. It points at
+my copy, not Dr. Parra's original, so if he pushes changes later I'd need
+to add a second remote to pull them in. That one usually gets called
+upstream.
+
+--- git remote -v ---
+origin	https://github.com/alikhxn5/GitFall2026-Alikhan.git (fetch)
+origin	https://github.com/alikhxn5/GitFall2026-Alikhan.git (push)
+
+----------------------------------------------------------------
+STEP 22: GIT BRANCH AFTER CREATING FEATURE1
+----------------------------------------------------------------
+
+Two things changed. There are two branches now instead of one, and there's
+an asterisk. The asterisk marks whichever branch I'm currently on, and it's
+sitting next to feature1. git status says the same thing on its first line.
+
+--- git branch ---
+* feature1
+  main
+
+----------------------------------------------------------------
+STEP 30: RUNNING LS AFTER SWITCHING BACK
+----------------------------------------------------------------
+
+inspiration.txt isn't there. It didn't get deleted though. It's in the two
+commits I made on feature1 and it's still in the repository. When I
+switched to main, git rewrote my folder to match the commit main points at,
+and on main that file was never created. Switching back to feature1 brings
+it right back.
+
+So the folder isn't a pile of everything I've ever made. It's a snapshot of
+one commit at a time, and git swaps the contents when I move between
+branches.
+
+properties.txt shows up in both listings, because it's untracked and
+ignored. Git has no version of it to swap out.
+
+--- ls on feature1 ---
+book.txt        BookShop.java   inspiration.txt Main.java       properties.txt  README.md       src
+
+--- ls after switching to main ---
+book.txt       BookShop.java  Main.java      properties.txt README.md      src
+
+----------------------------------------------------------------
+STEP 33: GITK
+----------------------------------------------------------------
+
+gitk isn't installed on my machine. It comes with Homebrew's git but not
+with the version Apple ships, so running it just gave me "command not
+found". I didn't want to install a GUI with the deadline this close, so I
+got the same information as text instead:
+
+  git log --graph --all --decorate --oneline
+
+gitk would show every commit as a node in a graph up top, with lines
+connecting each one to its parent, and clicking a node fills the panes
+below with that commit's author, date, message, and diff. Branch names show
+up as coloured labels on whichever commit they point at.
+
+Reading the text version below: Dr. Parra's twelve commits are at the
+bottom, and there's a visible fork where his readme branch splits off at
+4cd474a and rejoins at the merge commit 5f75e75. My three commits sit on
+top of that. Both main and feature1 are labelled on the same commit,
+6a496f1, because the merge in step 32 was a fast-forward. Nothing happened
+on main while I was working on feature1, so git just slid main forward to
+where feature1 already was instead of making a merge commit. That's why his
+history has a diamond in it and mine is a straight line.
+
+--- git log --graph --all --decorate --oneline ---
+* 6a496f1 (HEAD -> main, feature1) Added five quotes to inspiration file
+* a0b0881 Added an empty inspiration file
+* 48f8f77 (origin/main, origin/HEAD) Added a book summary and repository status snapshots
+* e7fd94b Create .gitignore
+* 6aa1abe Files added
+*   5f75e75 Merge branch 'readme' I do not like VI that is what
+|\
+| * b3e573c added another name
+| * ea123f7 added another name
+| * 4cd474a sllepy message
+* | fca18d2 BookShop class create
+|/
+* 8228019 Updated readme file
+* 985e63e Added more names
+* 21ea409 Added names LinkedList
+* b02c65d added empty Main.java
+* bdd2fa9 starter files
+
+================================================================
+STEP 36: QUESTIONS
+================================================================
+
+----------------------------------------------------------------
+(a) How many commits have been done to the repository?
+----------------------------------------------------------------
+
+Command: git rev-list --count HEAD
+
+12 when I cloned it, all of them by Esteban Parra. I checked right after
+cloning, before I'd changed anything, and got exactly 12.
+
+Running it now gives 15, because rev-list --count counts everything
+reachable from my current branch and that includes my own three commits.
+Both numbers are right, it just depends which one is being asked for.
+
+----------------------------------------------------------------
+(b) When was the .gitignore file modified last?
+----------------------------------------------------------------
+
+Command: git log -1 --format="%ad" -- .gitignore
+
+Result: Thu Sep 24 19:47:40 2026 -0500
+
+That date is mine, from step 8 when I added properties.txt to the file.
+Before that it was Tue Sep 22 09:35:42 2026, Dr. Parra's "Create .gitignore"
+commit, which is also when the file was created. It's only been touched
+twice total.
+
+This is the commit date, not the file's modification time on disk. Git
+doesn't care when a file changes in my folder, it only records a date when
+the change gets committed.
+
+----------------------------------------------------------------
+(c) What command(s) could you use to obtain the list of files that
+    were in a repository on a specific date?
+----------------------------------------------------------------
+
+Command: git ls-tree -r --name-only $(git rev-list -n 1 --before="2020-06-01" HEAD)
+
+It's two commands stacked. The inner one finds the most recent commit made
+before that date. The outer one lists every file in the tree at that
+commit, recursing into folders.
+
+Nothing comes back for 06/01/2020. That's not an error, the repository
+didn't exist yet. The oldest commit is "starter files" from Sep 10 2024, so
+there's nothing before that date to list.
+
+Also worth saying: ls-tree only knows about tracked files. Anything
+untracked or ignored was never in a commit, so no command can reconstruct
+it for a past date.
+
+----------------------------------------------------------------
+(d) How many times was each of the files inside the src folder
+    modified?
+----------------------------------------------------------------
+
+Command: git log --format=format: --name-only -- src | sort | uniq -c | sort -rn
+
+Result:
+   1 src/file.java
+
+src has one file in it and it changed once, in the "Files added" commit.
+
+The pipeline lists the filenames touched by every commit involving src,
+sorts them so duplicates end up next to each other, counts each group with
+uniq -c, then sorts by that count.
+
+It counts by path though, so if a file had been renamed at some point its
+history would split into two separate counts. --follow fixes that, but it
+only takes one path at a time.
+
+----------------------------------------------------------------
+(e) How many addition operations were involved in the creation of
+    the file Remove.txt?
+----------------------------------------------------------------
+
+Command: git log --diff-filter=A --numstat -- Remove.txt
+
+Result:
+6aa1abe Files added
+1	0	Remove.txt
+
+One. --diff-filter=A limits the log to the commit that added the file, and
+--numstat prints three columns: lines added, lines deleted, filename. The
+first column is the answer.
+
+Additions means lines here, not characters and not commits. Remove.txt was
+created with a single line in it.
+
+I deleted the file myself in step 11 with git rm, which is why it's not in
+my folder anymore. The history is still there, which is the only reason
+this question can be answered at all.
+
+----------------------------------------------------------------
+(f) What is the difference between git log and git status?
+----------------------------------------------------------------
+
+They report different things at different points in time.
+
+git log is committed history. What got recorded, by who, when, with what
+message. All of it is already saved and none of it is going to change.
+
+git status is right now. Which files differ between my folder, the staging
+area, and the last commit, and which branch I'm on. None of it is permanent
+yet.
+
+Step 17 made this obvious. I'd staged book.txt and then appended to it
+again, and git status listed the same file twice, once under "Changes to be
+committed" and once under "Changes not staged for commit". That isn't a
+bug. The staging area was holding the version from when I ran git add and
+my folder was holding the newer one. Two real versions sitting in two
+different places. git log had nothing to say about any of it, because none
+of it had been committed.
+
+Log looks backward at what's permanent. Status looks at what's still in
+progress.
+
+----------------------------------------------------------------
+(g) What does the command shortlog do?
+----------------------------------------------------------------
+
+Command: git shortlog
+
+shortlog summarizes the log by author instead of listing every commit on
+its own. By default it groups commits under each person's name with their
+subject lines underneath, which is what my step 5 output shows, all twelve
+of them under Esteban Parra with the count in brackets.
+
+Adding -s drops the subject lines and just gives a count per author, and -n
+sorts by that count. Those two pretty much always get used together, as
+git shortlog -sn.
+
+It was originally built for writing release announcements, so the question
+it answers is who contributed and how much.
+
+----------------------------------------------------------------
+(h) What command would you use to list the commits in which the
+    file "Main.java" was part of the committed files?
+----------------------------------------------------------------
+
+Command: git log -- Main.java
+
+Result:
+b3e573c added another name
+ea123f7 added another name
+985e63e Added more names
+21ea409 Added names LinkedList
+b02c65d added empty Main.java
+
+Five commits.
+
+The -- matters. It tells git that everything after it is a path and not a
+revision. If a branch and a file happened to share a name, git wouldn't
+know which one I meant.
+
+I ran into this exact error earlier in the assignment. I typed
+git log graph --oneline by mistake, leaving off the dashes, and git tried
+to read "graph" as a revision and gave up. Its own error message suggested
+using -- to separate paths from revisions.
+
+----------------------------------------------------------------
+(i) What command would you use to list the commits in which the
+    file "Main.java" was part of the committed files, including
+    renames and the diffs of each commit?
+----------------------------------------------------------------
+
+Command: git log --follow -p -- Main.java
+
+Same as (h) with two flags added.
+
+--follow keeps tracing the file back through renames, so if Main.java used
+to be called something else those older commits show up too. Git can do
+this because it tracks content rather than filenames, and works out renames
+by how similar the content is between commits.
+
+-p prints the actual diff each commit introduced instead of just the
+metadata, so I can see line by line what changed each time.
+
+----------------------------------------------------------------
+(j) What command would you use to list the commits whose commit
+    message contains the word "account"?
+----------------------------------------------------------------
+
+Command: git log --grep="account"
+
+Nothing comes back.
+
+--grep searches commit messages, both the subject and the body. It's case
+sensitive by default so -i broadens it, and I tried it both ways. Nothing
+in this repository mentions "account".
+
+Not the same as git grep, which searches inside the tracked files
+themselves rather than the messages. Different question, different command.
+
+----------------------------------------------------------------
+(k) What command would you use to see the commits made by a
+    specific person?
+----------------------------------------------------------------
+
+Command: git log --author="Esteban"
+
+This returns all twelve of Dr. Parra's commits, since he's the only person
+who committed to the original repository.
+
+--author matches against the author field as a substring, so a first name,
+a last name, or part of an email address all work. It takes a regex too if
+I wanted to match a few people at once.
+
+Git keeps author and committer as separate fields. The author is whoever
+wrote the change, the committer is whoever applied it. Those are usually
+the same person but they split apart when someone applies a patch on your
+behalf or when history gets rewritten. --committer searches the other one.
+
+----------------------------------------------------------------
+(l) What command would you use to see the commits made by "Lauren"
+    between 01/05/2014 and 01/14/2024?
+----------------------------------------------------------------
+
+Command: git log --author="Lauren" --since="2014-01-05" --until="2024-01-14"
+
+Nothing comes back, for two separate reasons. Esteban Parra is the only
+author in this repository, so there are no Lauren commits to find. And the
+whole thing was created in September 2024, which falls outside that window
+anyway.
+
+One thing I did on purpose: the assignment writes the dates as 01/05/2014
+and 01/14/2024, and that's ambiguous. 01/05/2014 is January 5th if you read
+it the American way and May 1st if you read it the European way. I wrote
+them as ISO, YYYY-MM-DD, which git accepts and which only reads one way, so
+the command means what I meant it to mean.
