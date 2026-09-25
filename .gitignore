@@ -1,3 +1,5 @@
 *.DS_Store
 properties.txt
 spiredeck/*.class
+spiredeck/SpireDeck_*
+Terminal Saved Output*
