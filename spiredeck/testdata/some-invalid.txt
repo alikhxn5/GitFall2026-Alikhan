@@ -1,0 +1,13 @@
+Strike:1
+Defend:1
+Bash:2
+Anger:0
+Cleave:1
+Clothesline:2
+Headbutt:1
+Heavy Blade:2
+Iron Wave:1
+Perfected Strike:2
+Strike:9
+:2
+   :1

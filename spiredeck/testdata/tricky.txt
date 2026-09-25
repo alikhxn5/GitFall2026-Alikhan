@@ -1,0 +1,4 @@
+Strike:1   
+Colon: In Name:2
+
+Defend:1
